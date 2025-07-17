@@ -65,7 +65,7 @@ body {
   top: 0;
   width: 0%;
   height: 3rem;
-  transition: width 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .progress-item:nth-of-type(1) {
