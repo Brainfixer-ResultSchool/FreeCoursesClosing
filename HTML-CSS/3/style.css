@@ -1,142 +1,120 @@
-body {
-    font-size: 3vh;
-    background-color: white;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    transition: background-color 0.2s linear;
-    pointer-events: none;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.wrapper {
-    border: 4px solid #4400ff;
-    width: 50%;
-    height: 50%;
-    padding: 0rem;
-    background-color: #0a0a0a23;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s linear;
-    pointer-events: none;
+body {
+  font-size: 3vmin;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #14191d, #38393b);
 }
 
 .card {
-    width: 90%;
-    height: 90%;
-    pointer-events: auto;
-}
-
-.card-inner {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.9s;
-    transform-style: preserve-3d;
-    position: relative;
-}
-
-.card:hover .card-inner {
-    transform: rotateY(180deg);
+  width: 80vmin;
+  height: 50vmin;
+  transition: transform 0.9s;
+  transform-style: preserve-3d;
+  position: relative;
 }
 
 .card-front,
 .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.wrapper:hover {
-    border-color: #ff0000;
-    background-color: #ffffff13;
-}
-
-body:hover {
-    background-color: #0a0a0a;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease;
+  box-shadow: 0 0 0.5rem #fff6;
+  background: #38393b;
 }
 
 .card-front {
-    background: #0a0a0a;
-    box-shadow: 5px 5px 10px 1px #444444;
+  cursor: pointer;
 }
 
 .card-back {
-    background: #757575;
-    transform: rotateY(180deg);
-    flex-direction: column;
+  transform: rotateY(180deg);
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.card:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+.card:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+.card-title {
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 1rem #000;
 }
 
 .tabs {
-    color: black;
-    width: 100%;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 10fr;
+  column-gap: 0.5rem;
 }
 
-.tabs input[type="radio"] {
-    display: none;
+.tab-radio {
+  display: none;
+  opacity: 0;
 }
 
 .tabs label {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    margin: 0;
-    cursor: pointer;
-    background: #ebebeb8e;
-    color: black;
-    border-radius: 5px 5px 0 0;
-    transition: background 0.3s;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background: #ebebeb8e;
+  color: #000;
+  border-radius: 0.5rem 0.5rem 0 0;
+  transition: background 0.3s;
+  text-align: center;
 }
 
 .tabs label:hover {
-    background: #d8d8d8;
+  background: #d8d8d8;
 }
 
 .tab-content {
-    display: none;
-    background: #ffffff;
-    padding: 1rem;
-    border-radius: 0 0 10px 10px;
-    margin-top: -1px;
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  width: 100%;
+  grid-column: 1/4;
+  grid-row: 2/3;
+  overflow-y: scroll;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.75s ease;
 }
 
-#tab1:checked ~ label[for="tab1"],
-#tab2:checked ~ label[for="tab2"],
-#tab3:checked ~ label[for="tab3"] {
-    background: #ffffff;
+.tab-content-text {
+  text-align: justify;
 }
 
-#tab1:checked ~ .desc,
-#tab2:checked ~ .goals,
-#tab3:checked ~ .start {
-    display: block;
+.tab-radio:checked + label {
+  background: #ffffff;
 }
 
-a {
-    background: #000000;
-    padding: 0.5rem 2rem;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-ul {
-    padding-left: 1.2rem;
-}
-
-@media (max-width: 400px) {
-    .card {
-        width: 90%;
-        height: auto;
-    }
+.tab-radio[data-html]:checked ~ .html,
+.tab-radio[data-css]:checked ~ .css,
+.tab-radio[data-js]:checked ~ .js {
+  height: auto;
+  max-height: 9999rem;
+  opacity: 1;
 }
